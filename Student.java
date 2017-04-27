@@ -3,8 +3,10 @@ package prj5;
 import java.util.ArrayList;
 
 /**
- * @author group 24
- * @version 420
+ * Class for the student, creates a student object with fields hobby, major and region
+ *
+ * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+ * @version 2017.04.26
  *
  */
 public class Student {
@@ -22,7 +24,8 @@ public class Student {
      * @param input
      *            string of input that has the major, region and hobby of
      *            student
-     *
+     * 
+     * @param input the string input that gets recorded in the fields of major, region and hobby
      * @param songs list of songs
      */
     public Student(String input, ArrayList<String> songs) {
@@ -33,7 +36,6 @@ public class Student {
         response = new ArrayList<Response>();
         int songIndex = 0;
         int length = songs.size() * 2 + 5;
-        // System.out.println("results size: " + length);
         for (int i = 5; i < length; i++) {
             Boolean emptyHasHeard = false;
             Boolean emptyLikes = false;
@@ -65,13 +67,6 @@ public class Student {
                     }
                 }
             }
-            // else
-            // {
-            // completeResponse = true;
-            // }
-            // if(true)
-            // {
-
             Response r = new Response(hasHeard, likes, songs.get(songIndex),
                 emptyHasHeard, emptyLikes);
             response.add(r);
