@@ -3,8 +3,10 @@ package prj5;
 import java.util.ArrayList;
 
 /**
- * @author group 3
- * @version 420
+ * Test class for the student class that tests all of the methods in the student class
+ *
+ * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+ * @version 2017.04.26
  */
 
 public class StudentTest extends student.TestCase {
@@ -15,7 +17,7 @@ public class StudentTest extends student.TestCase {
 
 
     /**
-     * sets up test cases
+     * sets up test cases, is run before every test method is tested
      */
     public void setUp() {
         ArrayList<String> songList;
@@ -63,7 +65,7 @@ public class StudentTest extends student.TestCase {
 
 
     /**
-     * tests getHasHeard()
+     * tests getHasHeard() if the student has heard the particular song
      */
     public void testGetHasHeard() {
         assertEquals(student.getHasHeard("American Pie"), true);
@@ -75,7 +77,7 @@ public class StudentTest extends student.TestCase {
 
 
     /**
-     * tests getLikes()
+     * tests getLikes() if the student likes the particular song
      */
     public void testGetLikes() {
         assertEquals(student.getLikes("American Pie"), false);
@@ -87,7 +89,7 @@ public class StudentTest extends student.TestCase {
 
 
     /**
-     * tests emptyHasHeardResponse()
+     * tests emptyHasHeardResponse() if the student didn't respond if they heard the song or not
      */
     public void testEmptyHasHeardResponse() {
         assertEquals(student.emptyHasHeardResponse("American Pie"), false);
@@ -98,7 +100,7 @@ public class StudentTest extends student.TestCase {
 
 
     /**
-     * tests emptyLikesResponse()
+     * tests emptyLikesResponse() if the student didn't respond if they liked the song or not
      */
     public void testEmptyLikesResponse() {
         assertEquals(student.emptyLikesResponse("American Pie"), false);
