@@ -1,8 +1,10 @@
 package prj5;
 
 /**
- * @author matt
- * @version 4/20
+ * Class of Response that contains fields if it is heard, liked and the name
+ *
+ * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+ * @version 2017.04.26
  */
 public class Response {
 
@@ -102,6 +104,8 @@ public class Response {
 
 
     /**
+     * True or false returns if the heard response was empty 
+     *
      * @return boolean whether has heard response is empty
      */
     public boolean isEmptyHasHeard() {
@@ -110,6 +114,8 @@ public class Response {
 
 
     /**
+     * True or false returns if the liked was empty 
+     * 
      * @return boolean whether likes response is empty 
      */
     public boolean isEmptyLikes() {
