@@ -8,6 +8,18 @@ import CS2114.TextShape;
 import CS2114.Window;
 import CS2114.WindowSide;
 
+/**
+ * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+ * @version 2017.04.26
+ *
+ * Front end class, has all the buttons and shows the glyphs
+ * Contains methods that build the glyphs and display
+ * Based on the user's preference shows glyphs based on hobby, region and major
+ * as well as sort the glyphs by artist, year, title and song genre
+ * Display glyphs with 9 to a page, and next and previous buttons go through the array 
+ * to represent pages in the window
+ * There are fields for buttons, windows, and arrays
+ */
 public class GUIPrj5Window {
     private Window window;
     private Button prevButton;
@@ -21,24 +33,23 @@ public class GUIPrj5Window {
     private Button repRegionButton;
     private Button quitButton;
     private LinkedList<Song> songList;
-    private ArrayList<Student> studentList;
+    //GUIPrjprivate ArrayList<Student> studentList;
     private int[] resultArray; 
     private String representBy; 
-    private int index; 
+    //private int index; 
     private int songIndex; 
 
     /**
-     * Constructor
-     * 
-     * @param queue
-     *            the queue to be seated in the train
+     * Default constructor for the GUIPjWindow class, initializes all the fields as well as creates the window
+     * Adds buttons to the window, and links the methods to the buttons.
+     *
+     * @param songList LinkedList of songs that contain all the information to be displayed
      */
     public GUIPrj5Window(
-        LinkedList<Song> songList,
-        ArrayList<Student> studentList) {
+        LinkedList<Song> songList) {
         this.songList = songList;
-        this.studentList = studentList;
-        window = new Window("Project 5, Matt Hwang, Sammi Tao");
+        //this.studentList = studentList;
+        window = new Window("Project 5, Matthh5, samant8");
         window.setSize(1000, 600);
         prevButton = new Button("Prev");
         window.addButton(prevButton, WindowSide.NORTH);
@@ -73,7 +84,7 @@ public class GUIPrj5Window {
         repRegionButton.onClick(this, "clickedRepRegion");
         // sortSongsByArtist();
         // representHobby();
-        index = 0; 
+        //index = 0; 
         songIndex = 0; 
         resultArray = Input.representMajor(); 
         this.representBy = "Hobby"; 
@@ -83,6 +94,15 @@ public class GUIPrj5Window {
         //displayGlyph(500, 100, songList.get(0), 0); 
         //displayGlyphs(); 
     }
+    
+    /**
+     * Method that draws the legend for the window. Based on the representation by the user
+     * the legend changes to accomodate that. If the representBy is equal to hobby the legend
+     * changes to read, art, sports, and music, which describe what the glyphs represent.
+     * If RepresentBy is equal to Major the legend changes to Computer science, Other Engineering
+     * Math or CMDA, and Other. Lastly if RepresentBy is set to Region, the legend changes to NorthEast us, 
+     * Southeast us, rest of us and outside of us
+     */
     public void drawLegend()
     {
         Shape box = new Shape(820, 245, 150, 200);
@@ -126,6 +146,7 @@ public class GUIPrj5Window {
             text3.setText("Rest of US");
             text4.setText("Outside US");
         }
+        
         likes.setBackgroundColor(Color.white);
         window.addShape(legend);
         window.addShape(text1);
@@ -138,15 +159,30 @@ public class GUIPrj5Window {
         window.addShape(likes);
         window.addShape(box);
     }
+    
+    /**
+     * Onclick of the next button, the previous button will be enabled as well as remove all 
+     * shapes on the window. After that it will grab the next set of information to be displayed
+     * as glyphs
+     *
+     * @param button the button clicked that would call the ClickedNext Method
+     */
     public void clickedNext(Button button)
     {
         prevButton.enable();
         window.removeAllShapes();
         displayGlyphs(); 
     }
+    
+    /**
+     * Onclick of the prev button if it is at the front of the "pages" the previous button is disabled
+     * Otherwise it will traverse the "pages" and move through to the beginning if clicked that
+     * many times
+     *
+     * @param button the button clicked that would call the clickedPrev Method
+     */
     public void clickedPrev(Button button)
     {
-           
         if(songIndex - 18 >= 0)
         {
             nextButton.enable();
@@ -158,10 +194,13 @@ public class GUIPrj5Window {
         {
             prevButton.disable();
         }
-            
-        
-        
     }
+    
+    /**
+     * Method that displays 9 glyphs to a screen
+     * Calls the displayGlyph method and places the next 9 glyphs on the page
+     * As each glyph is placed, the index is incremented to traverse the array 
+     */
     public void displayGlyphs()
     {
         if(songIndex < songList.size())
@@ -178,8 +217,7 @@ public class GUIPrj5Window {
                         Song song = songList.get(songIndex);
                         displayGlyph(x, y, song, songIndex * 8); 
                         
-                        x = x + window.getWidth()/3 - 30; 
-                        
+                        x = x + window.getWidth()/3 - 30;
                     }
                     else
                     {
@@ -189,9 +227,20 @@ public class GUIPrj5Window {
                 }
                 y = y + window.getHeight()/3 - 50; 
             }
-        }
-        
+        }   
     }
+    
+    /**
+     * Method that draws the glyphs and grabs the data from the song passed through from
+     * the parameters. The glyphs represent likes and heards based on the representation passed
+     * and length of the bars is based on the percentages of students that have heard and liked based
+     * on the category
+     *
+     * @param x the x coordinate where the bar should be created
+     * @param y the y coordinate where the bar should be created
+     * @param song the song that we are getting infomation from such as artist name and song title
+     * @param index the index of the array where the information is stored in
+     */
     public void displayGlyph(int x, int y, Song song, int index)
     {
         int stem1 = resultArray[index];
@@ -227,14 +276,26 @@ public class GUIPrj5Window {
         Shape bar7 = new Shape(x - (stem7 * 1), y + 30, stem7 * 1, 10, Color.GREEN); 
         window.addShape(bar7);
         Shape bar8 = new Shape(x, y + 30, stem8 * 1, 10, Color.green); 
-        window.addShape(bar8);
-        
+        window.addShape(bar8);   
     }
     
+    /**
+     * Method called when the quit button is clicked, exits the window
+     *
+     * @param button button clicked to call the method clickedQuit
+     */
     public void clickedQuit(Button button)
     {
         System.exit(0);
     }
+    
+    /**
+     * Sorts the list of songs based on Artist name alphabetically
+     * All the shapes are removed and then
+     * When called the list is sorted, and then the glyphs are displayed again in the new order
+     *
+     * @param button the button clicked to call the method clickedSortArtistName
+     */
     public void clickedSortArtistName(Button button)
     {
         songList = Input.sortSongsByArtistName();
@@ -256,6 +317,13 @@ public class GUIPrj5Window {
         displayGlyphs(); 
     }
     
+    /**
+     * Sorts the list of songs alphabetically based on the song title
+     * All the shapes are removed and then when called the list is sorted,
+     * and then the glyphs are displayed in the new order
+     *
+     * @param button the button clicked that will call the method clickedSortSongTitle
+     */
     public void clickedSortSongTitle(Button button)
     {
         songList = Input.sortSongsByTitle();
@@ -276,6 +344,13 @@ public class GUIPrj5Window {
         displayGlyphs(); 
     }
     
+    /**
+     * Sorts the list of songs in numeric order, incremental
+     * All the shapes are removed and then when called the list is sorted,
+     * and then the glyphs are displayed in the new order
+     *
+     * @param button the button clicked that will call the method clickedSortSongYear
+     */
     public void clickedSortSongYear(Button button)
     {
         songList = Input.sortSongsByReleaseYear();
@@ -296,6 +371,13 @@ public class GUIPrj5Window {
         displayGlyphs(); 
     }
     
+    /**
+     * Sorts the list of songs alphabetically based on the song's genre
+     * All the shapes are removed and then when called the list is sorted,
+     * and then the glyphs are displayed in the new order
+     *
+     * @param button the button clicked that will call the method clickedSortGenre
+     */
     public void clickedSortGenre(Button button)
     {
         songList = Input.sortSongsByGenre();
@@ -315,6 +397,14 @@ public class GUIPrj5Window {
         window.removeAllShapes();
         displayGlyphs(); 
     }
+    
+    /**
+     * Changes the representation of the glyphs to hobby
+     * The glyph lengths will be changed based on the percentages of liked and heard for the 
+     * categories in the hobby which are read, art, sports, and music
+     * 
+     * @param button the button clicked that calls this method clickedRepHobby
+     */
     public void clickedRepHobby(Button button)
     {
         representBy = "Hobby"; 
@@ -327,6 +417,13 @@ public class GUIPrj5Window {
         displayGlyphs(); 
     }
     
+     /**
+     * Changes the representation of the glyphs to major
+     * The glyph lengths will be changed based on the percentages of liked and heard for the 
+     * categories in the major which are computer science, other engineering, math or cmda, and other
+     * 
+     * @param button the button clicked that calls this method clickedRepMajor
+     */
     public void clickedRepMajor(Button button)
     {
         representBy = "Major"; 
@@ -339,6 +436,13 @@ public class GUIPrj5Window {
         displayGlyphs(); 
     }
     
+     /**
+     * Changes the representation of the glyphs to Region
+     * The glyph lengths will be changed based on the percentages of liked and heard for the 
+     * categories in the region which are Northeast US, Southeast US, rest of US and outside of US
+     * 
+     * @param button the button clicked that calls this method clickedRepRegion
+     */
     public void clickedRepRegion(Button button)
     {
         representBy = "Region"; 
@@ -350,7 +454,8 @@ public class GUIPrj5Window {
         } 
         displayGlyphs(); 
     }
-    public void displayResults() {
+    
+    /**public void displayResults() {
         int numSong = 0;
         for (int i = 0; i < songList.size(); i++) {
             Song song = songList.get(i);
@@ -372,4 +477,5 @@ public class GUIPrj5Window {
         }
         System.out.println("---------------------------------------------");
     }
+    */
 }
