@@ -33,7 +33,7 @@ public class GUIPrj5Window {
     private Button repRegionButton;
     private Button quitButton;
     private LinkedList<Song> songList;
-    //GUIPrjprivate ArrayList<Student> studentList;
+    private ArrayList<Student> studentList;
     private int[] resultArray; 
     private String representBy; 
     //private int index; 
@@ -46,9 +46,9 @@ public class GUIPrj5Window {
      * @param songList LinkedList of songs that contain all the information to be displayed
      */
     public GUIPrj5Window(
-        LinkedList<Song> songList) {
+        LinkedList<Song> songList, ArrayList<Student> studentList) {
         this.songList = songList;
-        //this.studentList = studentList;
+        this.studentList = studentList;
         window = new Window("Project 5, Matthh5, samant8");
         window.setSize(1000, 600);
         prevButton = new Button("Prev");
