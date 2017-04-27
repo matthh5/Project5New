@@ -3,15 +3,17 @@ package prj5;
 import junit.framework.TestCase;
 
 /**
- * @author group 24
- * @version 420
+ * Test class for the Response Class, includes tests for all the methods in response class
+ *
+ * @author Matt Hwang <matthh5> and Samantha Tao <Samant8>
+ * @version 2017.04.26
  */
 public class ResonseTest extends TestCase {
     private Response response;
 
 
     /**
-     * sets up test cases
+     * sets up test cases, is called before every test case
      */
     public void setUp() {
         response = new Response(true, false, "All These Things I've Done",
@@ -20,7 +22,7 @@ public class ResonseTest extends TestCase {
 
 
     /**
-     * test the getHasHeard method.
+     * test the getHasHeard method when is it true
      */
     public void testGetHasHeard() {
         assertEquals(true, response.getHasHeard());
@@ -28,7 +30,7 @@ public class ResonseTest extends TestCase {
 
 
     /**
-     * test the getLikes method.
+     * test the getLikes method, when it is false
      */
     public void testGetLikes() {
         assertEquals(false, response.getLikes());
@@ -44,7 +46,7 @@ public class ResonseTest extends TestCase {
 
 
     /**
-     * test the setHasHeard method.
+     * test the setHasHeard method when it is true and false
      */
     public void testSetHasHeard() {
         assertEquals(true, response.getHasHeard());
@@ -54,7 +56,7 @@ public class ResonseTest extends TestCase {
 
 
     /**
-     * test the setLikes method.
+     * test the setLikes method when it is true and false
      */
     public void testSetLikes() {
         assertEquals(false, response.getLikes());
@@ -73,7 +75,7 @@ public class ResonseTest extends TestCase {
     }
     
     /**
-     * tests isEmptyHasHeard()
+     * tests isEmptyHasHeard() when it is false
      */
     public void testIsEmptyHasHeard()
     {
@@ -81,7 +83,7 @@ public class ResonseTest extends TestCase {
     }
     
     /**
-     * tests isEmptyLikes()
+     * tests isEmptyLikes() when it is false
      */
     public void testIsEmptyLikes()
     {
