@@ -6,17 +6,9 @@ import java.util.NoSuchElementException;
 /**
  * This is a basic implementation of a linked list
  *
- * @author Mark Wiggans (mmw125)
- * @version 4/14/2015
- * @author Christina Olk (colk)
- * @version 9.4.15
- * @author Grace Fields
- * @version 10.26.15
- * @author Jamal Ahmad (jamal93)
- * @version 10/15/2016
- * @author JMargaret Ellis (maellis1)
- * @version 03/16/2017
- * 
+ * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+ * @version 2017.04.26
+ *
  * @param <E>
  *            This is the type of object that this class will store
  */
@@ -29,17 +21,9 @@ public class LinkedList<E> implements Iterable<E> {
      *
      * @param <D>
      *            This is the type of object that this class will store
-     * @author Mark Wiggans (mmw125)
-     * @author Christina Olk (colk)
-     * @author maellis1
-     * @author Jamal Ahmad (jamal93)
-     * @author Margaret Ellis (maellis1)
-     * 
-     * @version 4/14/2015
-     * @version 9.4.15
-     * @version 10.29.15
-     * @version 10/15/2016
-     * @version 03/17/2017
+     *
+     * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+     *
      */
     public static class Node<D> {
 
@@ -407,29 +391,6 @@ public class LinkedList<E> implements Iterable<E> {
         result += "}";
         return result;
     }
-
-
-    /**
-     * Returns an array representation of the list If a list contains A, B, and
-     * C, the following should be returned {A, B, C}, If a list
-     * contains A, B, C, and C the following should be returned {A, B, C, C}
-     *
-     * @return an array representing the list
-     */
-    /*public Object[] toArray() {
-
-        Object[] array = new Object[this.size()];
-
-        Node<E> current = head;
-        int count = 0;
-        while (current != null) {
-            array[count] = current.getData();
-            current = current.next;
-            count++;
-        }
-
-        return array;
-    }*/
 
 
     /**
