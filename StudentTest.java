@@ -40,27 +40,32 @@ public class StudentTest extends student.TestCase {
 
 
     /**
-     * tests getHobby()
+     * tests getHobby() and makes sure each of the students returns it's correct hobby
      */
     public void testGetHobby() {
         assertEquals(student.getHobby(), "sports");
-        student3.getClass();
+        assertEquals(student2.getHobby(), "sports");
+        assertEquals(student3.getHObby(), "sports");
     }
 
 
     /**
-     * tests getMajor()
+     * tests getMajor() and makes sure each of the students return it's correct major
      */
     public void testGetMajor() {
         assertEquals(student.getMajor(), "Math or CMDA");
+        assertEquals(student2.getMajor(), "Computer Science");
+        assertEquals(student3.getMajor(), "Computer Science");
     }
 
 
     /**
-     * tests getRegion()
+     * tests getRegion() and makes sure each of the students return it's correct region
      */
     public void testGetRegion() {
         assertEquals(student.getRegion(), "Southeast");
+        assertEquals(student2.getRegion(), "Southeast");
+        assertEquals(student3.getRegion(), "Southeast");
     }
 
 
