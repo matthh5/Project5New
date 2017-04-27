@@ -5,42 +5,50 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+ *
+ * Input class that imports data from SongList2017S.cvs and MusicSurvetData2017S.csv and
+ * creates a songList that has all the information from the data such as song name, title, and 
+ * the accordingly likes and heard for each category. 
+ *
+ * @param stringNameList the list that contains only the name of the songs
+ * @param students list of all the student objects
+ * @param songList the linkedlist that contains all of the song objects
+ * @param resultArray the array that contains all of the data information of song list, artist name and 
+ *        the survery percentages
+ */
 public class Input {
-
     private static ArrayList<String> stringNameList;
     private static ArrayList<Student> students;
     private static LinkedList<Song> songList;
     private static int[] resultArray;
 
-
+    /**
+     * The main method that creates a window with parameters of songlist and students
+     * makes the songlist and people list with the file names, and hard codes the data into the program
+     *
+     * @param args the array that holds the names of the files
+     */
     public static void main(String[] args) {
-        // System.out.println("arg length: " + args.length);
         String file1 = "SongList2017S.csv";
         String file2 = "MusicSurveyData2017S.csv";
         if (args.length > 0) {
             file1 = args[1];
             file2 = args[0];
-            // System.out.println(file1);
-            // System.out.println(file2);
         }
-
         songList = new LinkedList<Song>();
         stringNameList = new ArrayList<String>();
         students = new ArrayList<Student>();
         makeSongList(file1);
         makePeopleList(file2);
-        // sortSongsByGenre();
-        // representHobby();
-        // sortSongsByReleaseYear();
-        // displayResults();
-        // sortSongsByTitle();
-        // representHobby();
-        // displayResults();
         GUIPrj5Window window = new GUIPrj5Window(songList, students);
-        // window.passData();
     }
 
-
+    /**
+     * Displays the result in a toString that returns the songs title, artist name, genre and year
+     * with the percentages of likes and heards for each of the hobby categories
+     */
     public static void displayResults() {
         int numSong = 0;
         for (int i = 0; i < songList.size(); i++) {
@@ -63,7 +71,13 @@ public class Input {
         }
     }
 
-
+    /**
+     * Method that makes the songlist that takes a file as a parameter
+     * The scanner scans the file and adds the data into the SongList 
+     * If the file is null throw FileNotFoundException
+     *
+     * @param fileName the file that gets scanned and imported into the songList
+     */
     public static void makeSongList(String fileName) {
 
         Scanner file = null;
@@ -78,21 +92,21 @@ public class Input {
 
         while (file.hasNext()) {
             String line = file.nextLine();
-            // System.out.println(line);
             String[] data = line.split(",");
             stringNameList.add(data[0]);
-            // System.out.println(data[0]);
-            // System.out.println(data[1]);
-            // System.out.println(data[2]);
-            // System.out.println(data[3]);
             Song song = new Song(data[1], data[0], data[3], data[2]);
-            // System.out.println(song.getSongTitle());
             songList.add(song);
 
         }
     }
-
-
+    
+    /**
+     * Method that makes the students list that takes a file as a parameter
+     * The scanner scans the file and adds the data into the students  
+     * If the file is null throw FileNotFoundException
+     *
+     * @param fileName the file that gets scanned and imported into the students
+     */
     public static void makePeopleList(String fileName) {
         Scanner file = null;
         try {
@@ -105,9 +119,7 @@ public class Input {
         file.nextLine();
         while (file.hasNext()) {
             String line = file.nextLine();
-            // System.out.println(line);
             String[] data = line.split(",");
-            // System.out.println(data.length);
             if (data.length > 2) {
                 Student student = new Student(line, stringNameList);
                 students.add(student);
@@ -116,15 +128,13 @@ public class Input {
     }
 
 
+    /**
+     * Method that when called, sorts the songlist based on genre
+     * sorted with the selection sort, the list is sorted by its genre alphabetically
+     * 
+     * @return songList the sorted list
+     */
     public static LinkedList<Song> sortSongsByGenre() {
-        /*
-         * String str1 = "";
-         * for (int i = 0; i < songList.size(); i++) {
-         * str1 = str1 + songList.get(i).getGenre() + ", ";
-         * }
-         * System.out.println(str1);
-         */
-
         for (int i = 0; i < songList.size(); i++) {
             int maxSongIndex = 0;
             for (int j = 0; j < songList.size() - i; j++) {
@@ -137,26 +147,16 @@ public class Input {
             songList.add(songList.size() - i, songList.get(maxSongIndex));
             songList.remove(maxSongIndex);
         }
-        /*
-         * String str = "";
-         * for (int k = 0; k < songList.size(); k++) {
-         * str = str + songList.get(k).getGenre() + ", ";
-         * }
-         * System.out.println(str);
-         */
         return songList;
     }
 
-
+     /**
+     * Method that when called, sorts the songlist based on Song title
+     * sorted with the selection sort, the list is sorted by its title alphabetically
+     * 
+     * @return songList the sorted list
+     */
     public static LinkedList<Song> sortSongsByTitle() {
-        /*
-         * String str1 = "";
-         * for (int i = 0; i < songList.size(); i++) {
-         * str1 = str1 + songList.get(i).getGenre() + ", ";
-         * }
-         * System.out.println(str1);
-         */
-
         for (int i = 0; i < songList.size(); i++) {
             int maxSongIndex = 0;
             for (int j = 0; j < songList.size() - i; j++) {
@@ -169,26 +169,16 @@ public class Input {
             songList.add(songList.size() - i, songList.get(maxSongIndex));
             songList.remove(maxSongIndex);
         }
-        /*
-         * String str = "";
-         * for (int k = 0; k < songList.size(); k++) {
-         * str = str + songList.get(k).getGenre() + ", ";
-         * }
-         * System.out.println(str);
-         */
         return songList;
     }
 
-
+     /**
+     * Method that when called, sorts the songlist based on Artist Name
+     * sorted with the selection sort, the list is sorted by its Artist Name alphabetically
+     * 
+     * @return songList the sorted list
+     */
     public static LinkedList<Song> sortSongsByArtistName() {
-        /*
-         * String str1 = "";
-         * for (int i = 0; i < songList.size(); i++) {
-         * str1 = str1 + songList.get(i).getGenre() + ", ";
-         * }
-         * System.out.println(str1);
-         */
-
         for (int i = 0; i < songList.size(); i++) {
             int maxSongIndex = 0;
             for (int j = 0; j < songList.size() - i; j++) {
@@ -201,26 +191,16 @@ public class Input {
             songList.add(songList.size() - i, songList.get(maxSongIndex));
             songList.remove(maxSongIndex);
         }
-        /*
-         * String str = "";
-         * for (int k = 0; k < songList.size(); k++) {
-         * str = str + songList.get(k).getGenre() + ", ";
-         * }
-         * System.out.println(str);
-         */
         return songList;
     }
 
-
+    /**
+     * Method that when called, sorts the songlist based on Song release year
+     * sorted with the selection sort, the list is sorted by its song release year numerically
+     * 
+     * @return songList the sorted list
+     */
     public static LinkedList<Song> sortSongsByReleaseYear() {
-        /*
-         * String str1 = "";
-         * for (int i = 0; i < songList.size(); i++) {
-         * str1 = str1 + songList.get(i).getYear() + ", ";
-         * }
-         * System.out.println(str1);
-         */
-
         for (int i = 0; i < songList.size(); i++) {
             int maxSongIndex = 0;
             for (int j = 0; j < songList.size() - i; j++) {
@@ -233,19 +213,17 @@ public class Input {
             songList.add(songList.size() - i, songList.get(maxSongIndex));
             songList.remove(maxSongIndex);
         }
-        /*
-         * String str = "";
-         * for (int k = 0; k < songList.size(); k++) {
-         * str = str + songList.get(k).getYear() + ", ";
-         * }
-         * System.out.println(str);
-         * 
-         */
          return songList;
-        
     }
 
-
+    /**
+     * Parses through the students list and records if each student has heard or liked
+     * each of the songs and records that in a field, it is then divided by the number of students
+     * whom replied and outputs a percentage of students who like and have heard each song
+     * this data is then recorded into the resultArray. The resultArray is unique to hobby when
+     * this method is called and data values after the title and artist contains numeric number percentages
+     * that represent each hobby category
+     */
     public static int[] representHobby() {
         resultArray = new int[songList.size() * 8];
         int songNum = 0;
@@ -342,44 +320,7 @@ public class Input {
                         musicLikes++;
                     }
                 }
-
             }
-            /*
-             * System.out.println("Song: " + songName);
-             * System.out.println("Reading has heard: " + hasHeardReading);
-             * System.out.println("Reading likes: " + readingLikes);
-             * System.out.println("Art has heard: " + hasHeardArt);
-             * System.out.println("Art likes: " + artLikes);
-             * System.out.println("Sports has heard: " + hasHeardSports);
-             * System.out.println("Sports likes: " + sportsLikes);
-             * System.out.println("Music has heard: " + hasHeardMusic);
-             * System.out.println("Music likes: " + musicLikes);
-             */
-            /*
-             * System.out.println("readiing: " + numReading);
-             * System.out.println("art: " + numArt);
-             * System.out.println("sports: " + numSports);
-             * System.out.println("music: " + numMusic);
-             * System.out.println("readiing heard: " + numReadingHeard);
-             * System.out.println("art heard: " + numArtHeard);
-             * System.out.println("sports heard: " + numSportsHeard);
-             * System.out.println("music heard: " + numMusicHeard);
-             */
-            // System.out.println("sports: " + numSports);
-            /*
-             * if (numReading == 0) {
-             * numReading = 1;
-             * }
-             * if (numArt == 0) {
-             * numArt = 1;
-             * }
-             * if (numSports == 0) {
-             * numSports = 1;
-             * }
-             * if (numMusic == 0) {
-             * numMusic = 1;
-             * }
-             */
             resultArray[songNum * 8] = (int)((numReadingHeard * 1.0
                 / numHeardReadingResponses) * 100);
             resultArray[songNum * 8 + 1] = (int)((numArtHeard * 1.0
@@ -388,20 +329,7 @@ public class Input {
                 / numHeardSportsResponses) * 100);
             resultArray[songNum * 8 + 3] = (int)((numMusicHeard * 1.0
                 / numHeardMusicResponses) * 100);
-            /*
-             * if (numReadingHeard == 0) {
-             * numReadingHeard = 1;
-             * }
-             * if (numArtHeard == 0) {
-             * numArtHeard = 1;
-             * }
-             * if (numSportsHeard == 0) {
-             * numSportsHeard = 1;
-             * }
-             * if (numMusicHeard == 0) {
-             * numMusicHeard = 1;
-             * }
-             */
+   
             resultArray[songNum * 8 + 4] = (int)((readingLikes * 1.0
                 / numLikesReadingResponses) * 100);
             resultArray[songNum * 8 + 5] = (int)((artLikes * 1.0
@@ -415,7 +343,14 @@ public class Input {
         return resultArray;
     }
 
-
+    /**
+     * Parses through the students list and records if each student has heard or liked
+     * each of the songs and records that in a field, it is then divided by the number of students
+     * whom replied and outputs a percentage of students who like and have heard each song
+     * this data is then recorded into the resultArray. The resultArray is unique to major when
+     * this method is called and data values after the title and artist contains numeric number percentages
+     * that represent each major category
+     */
     public static int[] representMajor() {
         resultArray = new int[songList.size() * 8];
         int songNum = 0;
@@ -529,7 +464,14 @@ public class Input {
         return resultArray;
     }
 
-
+    /**
+     * Parses through the students list and records if each student has heard or liked
+     * each of the songs and records that in a field, it is then divided by the number of students
+     * whom replied and outputs a percentage of students who like and have heard each song
+     * this data is then recorded into the resultArray. The resultArray is unique to Region when
+     * this method is called and data values after the title and artist contains numeric number percentages
+     * that represent each Region category
+     */
     public static int[] representRegion() {
         resultArray = new int[songList.size() * 8];
         int songNum = 0;
