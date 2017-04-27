@@ -1,9 +1,10 @@
 package prj5;
 
 /**
- * @author group 24
- * @version 420
+ * The class for song whch contains the fields for artistname, songtitle, genre and year
  *
+ * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+ * @version 2017.04.26
  */
 public class Song {
     private String artistName;
@@ -12,7 +13,9 @@ public class Song {
     private String year;
 
 
-    /** constructor
+    /** 
+     * Default constructor for the song, initializes the artistname, songtitle
+     * genre and year
      * @param artistName name of artist
      * @param songTitle title of song
      * @param genre genre of song
