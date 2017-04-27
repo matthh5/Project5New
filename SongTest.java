@@ -6,13 +6,14 @@ package prj5;
 import junit.framework.TestCase;
 
 /**
- * @author Mary
- * @version 4/20
+ * The Test class for the Song class and contains all the test methods for all the methods
+ *
+ * @author Matt Hwang <matthh5> and Samantha Tao <samant8>
+ * @version 2017.04.26
  */
 public class SongTest extends TestCase {
 
     private Song song;
-
 
     /**
      * sets up test cases
