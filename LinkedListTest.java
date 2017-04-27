@@ -4,8 +4,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * @author group 24
- * @version 420
+ * @author Matt Hwang <matthh5> and Samantha Tao <samnt8>
+ * @version 2017.04.46
+ *
+ * Class that tests the LinkedList class and tests all the individual methods in the Linked
+ * list class
  */
 public class LinkedListTest extends student.TestCase {
     private LinkedList<String> list1;
@@ -13,7 +16,7 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * initiates fields before every test case
+     * Method that sets up all of the test methods, is called before every method
      */
     public void setUp() {
         list1 = new LinkedList<String>();
@@ -27,7 +30,7 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * test the size() method
+     * Test the size() method, when the list is empty, and not empty
      */
     public void testSize() {
         assertEquals(0, emptyList.size());
@@ -38,7 +41,8 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * test the add method
+     * Test the add method when the string is null and attempts to add
+     * a string to a position not in the string, also test when everything is normal
      */
     public void testAdd() {
         String nullString = null;
@@ -89,7 +93,7 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * test the add method
+     * test the add method with an exception and calls an indexoutofboundsException
      */
     public void testAddException() {
 
@@ -124,7 +128,7 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * test the add object method
+     * test the add object when the str is null
      */
     public void testAddObj() {
         list1.add("orange");
@@ -173,7 +177,8 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * test the remove index method
+     * test the remove index method 
+     * Attempts to remove an object when the index is out of bounds
      */
     public void testRemoveIndex() {
         assertTrue(list1.remove(0));
@@ -220,7 +225,7 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * test the get method
+     * test the get method, and tests the get method when the list is empty
      */
     public void testGet() {
         assertEquals("apple", list1.get(0));
@@ -251,7 +256,7 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * test the clear method.
+     * test the clear method when it was not full and empty
      */
     public void testClear() {
 
@@ -284,7 +289,7 @@ public class LinkedListTest extends student.TestCase {
 
 
     /**
-     * tests equals method
+     * tests equals method with a list that is null, the same, and not same 
      */
     public void testEquals() {
         LinkedList<String> smallListA;
